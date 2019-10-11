@@ -1,5 +1,6 @@
 package com.mobile.atividade01
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,15 +12,22 @@ class Activity1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_1)
 
-        var initialValue = 1;
+        val initialValue = 1;
         btnCounterAtv1.text = initialValue.toString();
 
         btnCounterAtv1.setOnClickListener {
             var value = btnCounterAtv1.text.toString();
-            var i = Intent(this, Activity2::class.java).apply{
+            val i = Intent(this, Activity2::class.java).apply{
                 putExtra("value", value.toInt())
             }
-            startActivity(i)
+            startActivityForResult(i, 0)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK){
+            btnCounterAtv1.text = data?.getStringExtra("value")
         }
     }
 }
