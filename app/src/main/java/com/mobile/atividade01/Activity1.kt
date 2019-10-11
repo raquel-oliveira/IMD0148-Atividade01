@@ -12,13 +12,9 @@ class Activity1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_1)
 
-        val initialValue = 1;
-        btnCounterAtv1.text = initialValue.toString();
-
         btnCounterAtv1.setOnClickListener {
-            var value = btnCounterAtv1.text.toString();
             val i = Intent(this, Activity2::class.java).apply{
-                putExtra("value", value.toInt())
+                putExtra("value", btnCounterAtv1.text.toString().toInt())
             }
             startActivityForResult(i, 0)
         }
