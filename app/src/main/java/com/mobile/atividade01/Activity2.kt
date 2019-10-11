@@ -14,11 +14,11 @@ class Activity2 : AppCompatActivity() {
         setContentView(R.layout.activity_2)
 
         val intentInfoAsString = intent.getIntExtra("value", 1).toString()
-        btnCounterAtv2.text = intentInfoAsString;
+        btnCounterAtv2.text = (intentInfoAsString.toInt()+increment).toString();
 
         btnCounterAtv2.setOnClickListener {
             var i = Intent(this, Activity1::class.java).apply{
-                putExtra("value", (intentInfoAsString.toInt()+increment).toString())
+                putExtra("value", btnCounterAtv2.text.toString().toInt())
             }
             setResult(Activity.RESULT_OK, i)
             finish()
