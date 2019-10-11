@@ -13,12 +13,12 @@ class Activity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_2)
 
-        var valueFromActivity1 = intent.getIntExtra("value", 1)
-        btnCounterAtv2.text = (valueFromActivity1+increment).toString()
+        val intentInfoAsString = intent.getIntExtra("value", 1).toString()
+        btnCounterAtv2.text = intentInfoAsString;
 
         btnCounterAtv2.setOnClickListener {
             var i = Intent(this, Activity1::class.java).apply{
-                putExtra("value", (valueFromActivity1+increment+increment).toString())
+                putExtra("value", (intentInfoAsString.toInt()+increment).toString())
             }
             setResult(Activity.RESULT_OK, i)
             finish()
